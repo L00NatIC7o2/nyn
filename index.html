@@ -602,7 +602,7 @@
         }
       });
 
-      const STORE_BASE = "https://yourstore.com";
+      const API_ENDPOINT = "/.netlify/functions/woocommerce-products";
       const productsEl = document.getElementById("products");
       const statusEl = document.getElementById("status");
 
@@ -692,7 +692,7 @@
 
       const fetchProducts = async () => {
         try {
-          const endpoint = `${STORE_BASE}/wp-json/wc/store/v1/products?per_page=8`;
+          const endpoint = `${API_ENDPOINT}?per_page=8`;
           const response = await fetch(endpoint);
           if (!response.ok) {
             throw new Error(`HTTP ${response.status}`);
@@ -714,7 +714,7 @@
         } catch (error) {
           renderProducts(fallbackProducts);
           statusEl.textContent =
-            "Using sample products. Add your WooCommerce URL in the code to sync live products.";
+            "Using sample products. Set Netlify env vars to sync WooCommerce products.";
         }
       };
 
